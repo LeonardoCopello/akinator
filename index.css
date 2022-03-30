@@ -1,0 +1,81 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+#tituloJogo {
+  color: blue;
+  font-size: 40px;
+}
+#chamada {
+  font-size: 25px;
+  color: rgb(0, 78, 104);
+  margin-bottom: 10px;
+  text-align: center;
+}
+.imgCharacters {
+  width: 150px;
+}
+#textoRodapeImagem {
+  text-align: center;
+}
+#genio {
+  width: 300px;
+  height: 500px;
+}
+#cabecalho {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+#imagens {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-content: center;
+  width: 1000px;
+}
+#rowPictures {
+  display: flex;
+}
+#blocoImagemTexto {
+  border: 1px solid black;
+  text-align: center;
+}
+button {
+  padding: 10px 20px;
+  margin-bottom: 5px;
+  border: 2px blue solid;
+  color: blue;
+  border-radius: 10px;
+}
+button:hover {
+  background-color: lightblue;
+}
+@media screen and (max-width: 820px), screen and (max-height: 520px) {
+    #genio {
+        width: 200px;
+        height: 400px;
+      }
+      #tituloJogo {
+        color: blue;
+        font-size: 30px;
+      }
+      .imgCharacters {
+        width: 80px;
+      }
+      #chamada {
+        font-size: 20px;
+        color: rgb(0, 78, 104);
+        margin-bottom: 10px;
+        text-align: center;
+      }
+      button {
+        padding: 5px 10px;
+        margin-bottom: 10px;
+        border: 2px blue solid;
+        color: blue;
+        border-radius: 10px;
+      }
+}

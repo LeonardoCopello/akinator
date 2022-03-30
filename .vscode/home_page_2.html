@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Akinator</title>
+  <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+
+  <div class="topo">
+    <p> Akinator</p><br>
+    <!-- <button onclick="mostraPergunta()">INICIAR</button> -->
+  </div>
+  <div class="quadro">
+    <div id="questao" class="questao"></div>
+
+    <form action="#" id="formulario">
+      <input type="radio" id="sim" name="resposta" value=1>
+      <label for="sim">SIM</label><br>
+      <input type="radio" id="nao" name="resposta" value=0>
+      <label for="nao">NÃO</label><br>
+      <input type="radio" id="nao_sei" name="resposta" value=2>
+      <label for="nao_sei">NÃO SEI</label><br>
+      <!-- <input id="btnSubmit" type="submit" value="CONFIRMAR"> -->
+    </form>
+
+    <!-- <ul id="alternativas" class="lista">
+            <li id="sim">SIM</li>
+            <li id="nao">NÃO</li>
+            <li id="naoSei">NÃO SEI</li>
+
+        </ul> -->
+    <div id="respostaEscolhida"></div>
+    <div class="btnResposta">Você respondeu:
+    </div>
+    <div id="resposta"></div>
+    <div class="btnProxQuestao">Proxima Pergunta >>
+    </div>
+
+  </div>
+  <div id="fimDeJogo">Aqui</div>
+  <script src="characters.js"></script>
+  <script>
+
+    let verEscolhaResposta = false;
+    let indicePergunta;
+    let elmBtnProxQuestao = document.querySelector('.btnProxQuestao');
+    let elmBtnResposta = document.querySelector('.btnResposta');
+    let elmFimDeJogo = document.getElementById('fimDeJogo');
+    let respostaUsuario = "";
+    let radios = document.getElementsByName('resposta');
+    let numeroAtributoResposta;
+    let tamanhoAtualListaPerguntas;
+    let atributoAtual;
+
+    mostraPerguntaInicial();
+    function mostraPerguntaInicial() { // aqui
+      document.getElementById('sim').checked = false;
+      document.getElementById('nao').checked = false;
+      document.getElementById('nao_sei').checked = false;
+      // verEscolhaResposta = false;
+      elmBtnResposta.innerHTML = 'Aqui aparecerá sua resposta';
+      
+
+      tamanhoAtualListaPerguntas = perguntasEAtributos.length;
+      indicePergunta = Math.floor(Math.random() * (tamanhoAtualListaPerguntas));
+      console.log(indicePergunta);
+      console.log(tamanhoAtualListaPerguntas);
+      if (tamanhoAtualListaPerguntas != 0) {
+        let perguntaAtual = perguntasEAtributos[indicePergunta].pergunta;
+        document.getElementById('questao').innerHTML = perguntaAtual;
+
+        document.querySelector('#formulario').addEventListener('change', alternativaEscolhida);
+        console.log('ponto crucial');
+      } else {
+        gameOver();
+      }
+    }
+
+    
+    function alternativaEscolhida() { // aqui
+      console.log('Passou conferirSeEscolheu')
+
+      for (var i = 0; i < radios.length; i++) {
+
+        // console.log([i].checked);
+        if (radios[i].checked) {
+          verEscolhaResposta = true;
+          console.log('passou aqui também')
+          
+          if (radios[i].value == 0) {
+
+            elmBtnResposta.innerHTML = `Você respondeu: NÃO`;
+            break;
+          } else if (radios[i].value == 1) {
+
+            elmBtnResposta.innerHTML = `Você respondeu: SIM`;
+            break;
+          } else if (radios[i].value == 2) {
+
+            elmBtnResposta.innerHTML = `Você respondeu: NÃO SEI`;
+            break;
+          } else {
+          }
+
+
+        }
+
+      }
+      respostaUsuario = radios[i].value;
+      let respostaUsuarioInt = Number(respostaUsuario);
+      atributoAtual = perguntasEAtributos[indicePergunta].atributo;
+      // console.log(atributoAtual);
+      // console.log(typeof(respostaUsuarioInt));
+      // console.log(respostaUsuarioInt);
+      // console.log(characters);
+      characters = characters.filter(element => {
+        return element[atributoAtual] == respostaUsuario;
+        console.log(element[atributoAtual]);
+      })
+      console.log(characters);
+
+      excluirPergunta();
+
+
+    }
+
+    
+    function excluirPergunta() { // aqui
+      
+      console.log('Passou excluirPergunta');
+
+      if (perguntasEAtributos.length == 0) {
+        gameOver();
+      } else {
+        elmBtnProxQuestao.addEventListener('click', function () {
+          console.log(verEscolhaResposta);
+
+          if (verEscolhaResposta) {
+            let elmBtnProxQuestao = document.querySelector('.btnProxQuestao');
+            perguntasEAtributos.splice(indicePergunta, 1);
+            console.log(perguntasEAtributos);
+            document.querySelector('#formulario').removeEventListener('change', alternativaEscolhida);
+            conferirPersonagem();
+            
+          }
+        })
+      }
+    }
+
+    function conferirPersonagem() { // aqui
+      console.log('Passou ConferirPersonagem')
+      console.log(respostaUsuario);
+      
+      if (characters.length == 1) {
+        console.log('Passou no conferir');
+        elmFimDeJogo.style.display = 'block';
+        elmFimDeJogo.innerHTML = `O personagem é: ${characters[0].nome}`;
+      }
+      mostraPerguntaInicial();
+    }
+
+    function gameOver() {
+      console.log('Passou GameOver');
+      let elmFimDeJogo = document.getElementById('fimDeJogo');
+      elmFimDeJogo.innerHTML = 'Infelizmente não advinhamos seu personagem';
+      document.getElementById('questao').innerHTML = 'Game Over';
+      document.querySelector('.btnResposta').style.display = 'none';
+      document.getElementById('formulario').style.display = 'none';
+      elmFimDeJogo.style.display = "block";
+      elmBtnProxQuestao.innerHTML = 'Reiniciar';
+      elmBtnProxQuestao.addEventListener('click', reiniciar);
+    }
+
+    function reiniciar() {
+      location.reload(); // Reiniciar o Programa
+    }
+
+
+
+  </script>
+
+
+</body>
+
+</html>

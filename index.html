@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akinator</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+
+<body>
+    <header id="cabecalho">
+        <h1 id="tituloJogo">Akinator</h1>
+        <h2 id="chamada">Mentalize um personagem entre os disponíveis nas imagens e clique em começar.</h2>
+        <a href="home_page.html"><button >COMEÇAR</button></a>
+    </header>
+
+    <main id="rowPictures">
+        <img id="genio" src="imagens/genio.png">
+        <section id="imagens">
+            <!-- Aqui vão entrar as IMAGENS com os NOMES  -->
+        </section>
+    </main>
+
+    <script src="characters.js"></script>
+
+    <script>
+        for (let i = 0; i < characters.length; i++) { // Varre a lista de Personagens
+            
+            let sectionImagens = document.getElementById('imagens'); // Pega a section
+            // ------ Constroi o local onde serão colocadas as imagens --------
+            let divImagemETexto = document.createElement('div');// <div> </div>
+            let elmImage = document.createElement('img'); // <img>
+            let imagemCorrente = characters[i].imagem; // Pega a imagem do índice 'i' na Lista
+            elmImage.setAttribute('src', imagemCorrente); // <img src="imagens/monica.jpg">
+            elmImage.setAttribute('class', 'imgCharacters'); // <img class="imgCaracters" src="imagens/monica.jpg">
+            let elmTexto = document.createElement('p'); // <p></p>
+            elmTexto.innerHTML = characters[i].nome; // <p> Mônica </p>
+            elmTexto.id = 'textoRodapeImagem';
+            // ------- Fim da Construção ----------
+
+            // ------- Monta a DIV -----------
+            divImagemETexto.appendChild(elmImage);
+            //  <div>
+            //      <img class="imgCaracters" src="imagens/monica.jpg">
+            //  </div>
+            divImagemETexto.appendChild(elmTexto);
+            //  <div>
+            //      <img class="imgCaracters" src="imagens/monica.jpg">
+            //      <p> Mônica </p>
+            //  </div>
+
+            sectionImagens.appendChild(divImagemETexto); // Mostrar local no HTML
+            // divImagemETexto.setAttribute('id','blocoImagemTexto');
+        }
+
+    </script>
+</body>
+
+</html>
