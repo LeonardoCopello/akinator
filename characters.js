@@ -1,6 +1,6 @@
 // O valor "0" é para resposta "NÃO" e 1 para "SIM"
 let characters = [
-    {id: 1, nome: "Mônica", chapeu: 0, pelucia: 1, imagem: "imagens/monica.jpg", SeHomemMulherOuAnimal_mulher: 0, comer: 0, loucura: 0, banho: 0, boaDiccao: 1, corDaBlusaOuVestido_vermelho: 1, corDaPeleOuPelo_branca: 1},
+    {id: 1, nome: "Mônica", chapeu: 0, pelucia: 1, imagem: "imagens/monica.jpg", SeHomemMulherOuAnimal_mulher: 1, comer: 0, loucura: 0, banho: 0, boaDiccao: 1, corDaBlusaOuVestido_vermelho: 1, corDaPeleOuPelo_branca: 1},
     {id: 2, nome: "Cebolinha", chapeu: 0, pelucia: 0, imagem: "imagens/cebolinha.jpg", SeHomemMulherOuAnimal_homem: 1, comer: 0, loucura: 0, banho: 0, boaDiccao: 0, corDaBlusaOuVestido_verde: 1, corDaPeleOuPelo_branca: 1},
     {id: 3, nome: "Cascão", chapeu: 0, pelucia: 0, imagem: "imagens/cascao.jpg", SeHomemMulherOuAnimal_homem: 1, comer: 0, loucura: 0, banho: 1, boaDiccao: 1, corDaBlusaOuVestido_amarelo: 1, corDaPeleOuPelo_branca: 1},
     {id: 4, nome: "Anjinho", chapeu: 0, pelucia: 0, imagem: "imagens/anjinho.jpg", SeHomemMulherOuAnimal_homem: 1, comer: 0, loucura: 0, banho: 0, boaDiccao: 1, corDaBlusaOuVestido_azul: 1, corDaPeleOuPelo_branca: 1},
